@@ -58,7 +58,6 @@ public class Grid extends Application {
                     if (row == null) row = 0;
                     if (col == null) col = 0;
                     Molecule temp = gameBoard.getBoard()[row][col];
-                    System.out.println(temp.getAtoms() + " " + temp.getCriticalMass());
                     temp.addAtom();
                 }
             });

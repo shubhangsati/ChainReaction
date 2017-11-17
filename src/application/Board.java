@@ -35,12 +35,16 @@ public class Board extends Group {
                 if (i == n - 1 && j == m - 1) type = 2;
                 if (i != 0 && i != n - 1 && j == m - 1 ) type = 5;
                 if (i != 0 && i != n - 1 && j != 0 && j != m - 1) type = 8;
-                board[i][j] = new Molecule(type, 10, redMaterial, width, height);
+                board[i][j] = new Molecule(type, 10, redMaterial, width, height, i, j, this);
                 board[i][j].setTranslateX(topx + width * j + width / 2);
                 board[i][j].setTranslateY(topy + height * i + height / 2);
                 getChildren().add(board[i][j]);
             }
         }
+    }
+
+    public void update(int x, int y) {
+        board[x][y].addAtom();
     }
 
     public Molecule[][] getBoard() {
