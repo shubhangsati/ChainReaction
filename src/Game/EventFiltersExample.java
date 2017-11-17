@@ -67,7 +67,7 @@ public class EventFiltersExample extends Application {
         EventHandler<MouseEvent> eventHandler = new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                PhongMaterial redMaterial = new PhongMaterial();
+                /*PhongMaterial redMaterial = new PhongMaterial();
                 redMaterial.setDiffuseColor(Color.RED);
                 redMaterial.setSpecularColor(Color.ORANGE);
 
@@ -110,7 +110,7 @@ public class EventFiltersExample extends Application {
                     three.stop();
                     Timeline splitAnimation = new SplitTimeline(molecule).getSplitAnimation();
                     splitAnimation.play();
-                }
+                }*/
             }
         };
 

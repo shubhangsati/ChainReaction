@@ -15,7 +15,7 @@ public class GridController {
     private URL location;
 
     @FXML
-    private AnchorPane grid;
+    public AnchorPane grid;
 
     @FXML
     public GridPane bottonGrid;
