@@ -1,0 +1,20 @@
+#button:pressed
+{
+	-fx-text-fill:#FCFFFC;
+	-fx-background-color:#248232;
+	
+}
+
+#button
+{
+	-fx-text-fill:#FCFFFC;
+	-fx-background-color:#2BA84A;  
+	/*-fx-border-color: rgb(0,0,0);
+	*/
+}
+/* 
+#button:hover
+{
+	-fx-text-fill:rgba(255,255,255,0.6);
+}
+*/
