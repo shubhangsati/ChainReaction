@@ -59,6 +59,8 @@ public class Grid extends Application {
                     if (col == null) col = 0;
                     Molecule temp = gameBoard.getBoard()[row][col];
                     temp.addAtom();
+                    Button x = (Button) item;
+
                 }
             });
         });
