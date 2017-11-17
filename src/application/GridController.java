@@ -2,7 +2,10 @@ package application;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 
@@ -18,10 +21,10 @@ public class GridController {
     private AnchorPane grid;
 
     @FXML
-    public GridPane bottonGrid;
+    private GridPane bottonGrid;
 
     @FXML
-    public GridPane topGrid;
+    private GridPane topGrid;
 
     @FXML
     void initialize() {
@@ -29,6 +32,20 @@ public class GridController {
         assert bottonGrid != null : "fx:id=\"bottonGrid\" was not injected: check your FXML file 'Grid.fxml'.";
         assert topGrid != null : "fx:id=\"topGrid\" was not injected: check your FXML file 'Grid.fxml'.";
 
+    }
+    void getXY() {
+    	topGrid.getChildren().forEach(item -> {
+		    item.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent event) {
+                    Integer row = topGrid.getRowIndex(item);
+                    Integer column = topGrid.getColumnIndex(item);
+                    if (row == null) row = 0;
+                    if (column == null) column = 0;
+                    System.out.println(row + " " + column);
+                }
+            });
+        });
     }
     
 }

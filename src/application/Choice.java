@@ -13,7 +13,7 @@ import javafx.scene.layout.GridPane;
 //import javafx.scene.layout.GridPane;
 //import javafx.scene.layout.StackPane;
 
-public class Grid extends Application {
+public class Choice extends Application {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -22,11 +22,11 @@ public class Grid extends Application {
 	
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		FXMLLoader root = new FXMLLoader(getClass().getResource("Grid9x6.fxml"));
+		FXMLLoader root = new FXMLLoader(getClass().getResource("Choice.fxml"));
 		Scene scene = new Scene(root.load());
-		GridController grid = root.getController();
+		ChoiceController grid = root.getController();
 //		GridPane top = grid.topGrid;
-		grid.getXY();
+//		grid.getXY();
 		primaryStage.setResizable(false);
 		primaryStage.setTitle("Chain Reaction");
 		primaryStage.setScene(scene);
