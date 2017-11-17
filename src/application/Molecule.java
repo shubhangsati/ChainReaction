@@ -92,6 +92,7 @@ public class Molecule extends Group{
             c.setTranslateX(getLayoutX() + radius / 2);
             c.setTranslateY(getLayoutY() + radius / 2);
             getChildren().add(c);
+            atoms++;
             getTransforms().removeAll(rot1, rot2);
             Timeline splitAnimation = new SplitTimeline(this).getSplitAnimation(width, height);
             two.stop();
