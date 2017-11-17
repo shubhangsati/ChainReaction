@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="grid" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="335.0" style="-fx-background-color: #202D33;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.GridController">
+<AnchorPane fx:id="grid" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="335.0" style="-fx-background-color: #202D33;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Grid9x6Controller">
    <children>
       <GridPane fx:id="topGrid" alignment="CENTER" layoutY="51.0" opacity="0.93" prefHeight="423.0" prefWidth="282.0" snapToPixel="false" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="45.0">
         <columnConstraints>
@@ -181,7 +181,7 @@
          </cursor>
       </GridPane>
        -->
-      <Button id="button" fx:id="newGame" defaultButton="true" layoutX="52.0" layoutY="500.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="100.0" stylesheets="@buttonstyle.css" text="Return" textFill="WHITE">
+      <Button id="button" fx:id="returnButton" defaultButton="true" layoutX="52.0" layoutY="500.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="100.0" stylesheets="@buttonstyle.css" text="Return" textFill="WHITE">
          <font>
             <Font name="Calibri Bold" size="22.0" />
          </font>
@@ -189,7 +189,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button id="button" fx:id="newGame1" defaultButton="true" layoutX="185.0" layoutY="500.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="100.0" stylesheets="@buttonstyle.css" text="Undo" textFill="WHITE">
+      <Button id="button" fx:id="undoButton" defaultButton="true" layoutX="185.0" layoutY="500.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="100.0" stylesheets="@buttonstyle.css" text="Undo" textFill="WHITE">
          <font>
             <Font name="Calibri Bold" size="22.0" />
          </font>

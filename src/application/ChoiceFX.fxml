@@ -23,7 +23,7 @@
             -->
       <HBox alignment="TOP_CENTER" layoutX="83.0" layoutY="181.0" prefHeight="22.0" prefWidth="166.0" spacing="13.0">
          <children>
-            <RadioButton mnemonicParsing="false" selected="true" text="9 x 6" textFill="WHITE">
+            <RadioButton fx:id="button9x6" mnemonicParsing="false" selected="true" text="9 x 6" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font>
@@ -31,14 +31,14 @@
                   <ToggleGroup fx:id="gridSize" />
                </toggleGroup>
             </RadioButton>
-            <RadioButton mnemonicParsing="false" text="15 x 10" textFill="WHITE" toggleGroup="$gridSize">
+            <RadioButton fx:id="button15x10" mnemonicParsing="false" text="15 x 10" textFill="WHITE" toggleGroup="$gridSize">
                <font>
                   <Font size="14.0" />
                </font>
             </RadioButton>
          </children>
       </HBox>
-      <Button id="button" fx:id="newGame" defaultButton="true" layoutX="129.0" layoutY="449.0" mnemonicParsing="false" stylesheets="@buttonstyle.css" text="Start" textFill="WHITE">
+      <Button id="button" fx:id="startButton" defaultButton="true" layoutX="129.0" layoutY="449.0" mnemonicParsing="false" stylesheets="@buttonstyle.css" text="Start" textFill="WHITE">
          <font>
             <Font name="Calibri Bold" size="22.0" />
          </font>

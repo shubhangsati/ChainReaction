@@ -41,7 +41,7 @@ public class Grid extends Application {
         SubScene x = new SubScene(root3d, 335, 600, true, SceneAntialiasing.BALANCED);
         Group ROOT = new Group(root.load(), x);
         Scene scene = new Scene(ROOT);
-        GridController gc = root.getController();
+        Grid9x6Controller gc = root.getController();
         GridPane top = gc.topGrid;
         AnchorPane pane = gc.grid;
         gc.getXY();

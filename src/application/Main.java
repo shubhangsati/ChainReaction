@@ -13,7 +13,7 @@ public class Main extends Application {
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		FXMLLoader root = new FXMLLoader(getClass().getResource("Application.fxml"));
+		FXMLLoader root = new FXMLLoader(getClass().getResource("MainFX.fxml"));
 		Scene scene = new Scene(root.load());
 //		EventHandler<MouseEvent> eventHandler = new EventHandler<MouseEvent>() {
 //			@Override
@@ -21,18 +21,18 @@ public class Main extends Application {
 //		        System.out.println("mouse click detected! " + mouseEvent.getSource());
 //		    }
 //		};
-		application.ButtonController hel = root.getController();
+		application.MainFXController hel = root.getController();
 //		Line lol = hel.line;
 //		System.out.println(hel.line.getClass());
 //		System.out.println(lol.getClass());
 //		lol.setStroke(Color.RED);
-		hel.mrinal123.setOnAction(e->{
-			
-		        System.out.println("mouse click detected! " + ((Button) e.getSource()).getText());
-		    }
-		);
+//		hel.mrinal123.setOnAction(e->{
+//			
+//		        System.out.println("mouse click detected! " + ((Button) e.getSource()).getText());
+//		    }
+//		);
 		//scene.addEventFilter(MouseEvent.MOUSE_CLICKED, eventHandler);
-		System.out.println(hel.mrinal123.computeAreaInScreen());
+//		System.out.println(hel.mrinal123.computeAreaInScreen());
 //		System.out.println(onetwothree.getChildren());
 //		primaryStage.setResizable(false);
 		//initialize();
