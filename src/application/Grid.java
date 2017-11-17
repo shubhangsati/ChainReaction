@@ -70,10 +70,9 @@ public class Grid extends Application {
         three.setCycleCount(Timeline.INDEFINITE);
         three.setAutoReverse(false);
         root3d.getChildren().add(molecule);
+        molecule.setMouseTransparent(true);
         //********************************************
-        molecule.getChildren().forEach(item -> {
-            item.setOnMouseClicked(System.out::println);
-        });
+
         top.getChildren().forEach(item -> {
             item.setOnMouseClicked(new EventHandler<MouseEvent>() {
                 @Override
