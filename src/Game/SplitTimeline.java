@@ -44,43 +44,43 @@ public class SplitTimeline{
         }
     }
 
-    public Timeline getSplitAnimation() {
+    public Timeline getSplitAnimation(double width) {
         Timeline t = new Timeline();
         if (numberOfMolecules == 2) {
             KeyFrame aStart = new KeyFrame(Duration.ZERO, new KeyValue(one.translateXProperty(), 0));
-            KeyFrame aEnd = new KeyFrame(Duration.seconds(0.5), new KeyValue(one.translateXProperty(), -100));
+            KeyFrame aEnd = new KeyFrame(Duration.seconds(0.5), new KeyValue(one.translateXProperty(), -width));
 
             KeyFrame bStart = new KeyFrame(Duration.ZERO, new KeyValue(two.translateYProperty(), 0));
-            KeyFrame bEnd = new KeyFrame(Duration.seconds(0.5), new KeyValue(two.translateYProperty(), -100));
+            KeyFrame bEnd = new KeyFrame(Duration.seconds(0.5), new KeyValue(two.translateYProperty(), -width));
 
             t.getKeyFrames().addAll(aStart, aEnd, bStart, bEnd);
         }
 
         if (numberOfMolecules == 3) {
             KeyFrame aStart = new KeyFrame(Duration.ZERO, new KeyValue(one.translateXProperty(), 0));
-            KeyFrame aEnd = new KeyFrame(Duration.seconds(0.5), new KeyValue(one.translateXProperty(), -100));
+            KeyFrame aEnd = new KeyFrame(Duration.seconds(0.5), new KeyValue(one.translateXProperty(), -width));
 
             KeyFrame bStart = new KeyFrame(Duration.ZERO, new KeyValue(two.translateYProperty(), 0));
-            KeyFrame bEnd = new KeyFrame(Duration.seconds(0.5), new KeyValue(two.translateYProperty(), -100));
+            KeyFrame bEnd = new KeyFrame(Duration.seconds(0.5), new KeyValue(two.translateYProperty(), -width));
 
             KeyFrame cStart = new KeyFrame(Duration.ZERO, new KeyValue(three.translateXProperty(), 0));
-            KeyFrame cEnd = new KeyFrame(Duration.seconds(0.5), new KeyValue(three.translateXProperty(), 100));
+            KeyFrame cEnd = new KeyFrame(Duration.seconds(0.5), new KeyValue(three.translateXProperty(), width));
 
             t.getKeyFrames().addAll(aStart, aEnd, bStart, bEnd, cStart, cEnd);
         }
 
         if (numberOfMolecules == 4) {
             KeyFrame aStart = new KeyFrame(Duration.ZERO, new KeyValue(one.translateXProperty(), 0));
-            KeyFrame aEnd = new KeyFrame(Duration.seconds(0.5), new KeyValue(one.translateXProperty(), -100));
+            KeyFrame aEnd = new KeyFrame(Duration.seconds(0.5), new KeyValue(one.translateXProperty(), -width));
 
             KeyFrame bStart = new KeyFrame(Duration.ZERO, new KeyValue(two.translateYProperty(), 0));
-            KeyFrame bEnd = new KeyFrame(Duration.seconds(0.5), new KeyValue(two.translateYProperty(), -100));
+            KeyFrame bEnd = new KeyFrame(Duration.seconds(0.5), new KeyValue(two.translateYProperty(), -width));
 
             KeyFrame cStart = new KeyFrame(Duration.ZERO, new KeyValue(three.translateXProperty(), 0));
-            KeyFrame cEnd = new KeyFrame(Duration.seconds(0.5), new KeyValue(three.translateXProperty(), 100));
+            KeyFrame cEnd = new KeyFrame(Duration.seconds(0.5), new KeyValue(three.translateXProperty(), width));
 
             KeyFrame dStart = new KeyFrame(Duration.ZERO, new KeyValue(four.translateYProperty(), 0));
-            KeyFrame dEnd = new KeyFrame(Duration.seconds(0.5), new KeyValue(four.translateYProperty(), 100));
+            KeyFrame dEnd = new KeyFrame(Duration.seconds(0.5), new KeyValue(four.translateYProperty(), width));
 
             t.getKeyFrames().addAll(aStart, aEnd, bStart, bEnd, cStart, cEnd, dStart, dEnd);
         }

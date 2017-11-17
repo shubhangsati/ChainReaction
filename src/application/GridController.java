@@ -18,13 +18,13 @@ public class GridController {
     private URL location;
 
     @FXML
-    private AnchorPane grid;
+    public AnchorPane grid;
 
     @FXML
     private GridPane bottonGrid;
 
     @FXML
-    private GridPane topGrid;
+    public GridPane topGrid;
 
     @FXML
     void initialize() {
