@@ -2,6 +2,8 @@ package application;
 
 import Game.SplitTimeline;
 import javafx.animation.*;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.paint.PhongMaterial;
 import javafx.scene.shape.Sphere;
 import javafx.scene.*;
@@ -9,19 +11,24 @@ import javafx.scene.transform.Rotate;
 import javafx.util.Duration;
 
 public class Molecule extends Group{
-    private int atoms, TYPE, radius, criticalMass;
+    private int atoms, TYPE, radius, criticalMass, row, column;
+    private Board board;
     private double width, height;
     private PhongMaterial color;
     private Rotate rot1, rot2;
     private Timeline two, three;
 
-    public Molecule(int t, int r, PhongMaterial C, double w, double h) {
+    public Molecule(int t, int r, PhongMaterial C, double w, double h, int i, int j, Board gameBoard) {
         atoms = 0;
         TYPE = t;
         radius = r;
         color = C;
         width = w;
         height = h;
+        row = i;
+        column = j;
+        board = gameBoard;
+
         if (TYPE < 4)
             criticalMass = 1;
         else if (TYPE >= 4 && TYPE < 8)
@@ -92,11 +99,67 @@ public class Molecule extends Group{
             c.setTranslateX(getLayoutX() + radius / 2);
             c.setTranslateY(getLayoutY() + radius / 2);
             getChildren().add(c);
+            atoms++;
             getTransforms().removeAll(rot1, rot2);
             Timeline splitAnimation = new SplitTimeline(this).getSplitAnimation(width, height);
             two.stop();
             three.stop();
             splitAnimation.play();
+            splitAnimation.setOnFinished(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    getChildren().removeAll(getChildren());
+                    atoms = 0;
+                    if (TYPE == 0) {
+                        board.update(row + 1, column);
+                        board.update(row, column + 1);
+                    }
+                    if (TYPE == 1) {
+                        board.update(row + 1, column);
+                        board.update(row, column - 1);
+                    }
+                    if (TYPE == 2) {
+                        board.update(row - 1, column);
+                        board.update(row, column - 1);
+                    }
+                    if (TYPE == 3) {
+                        board.update(row - 1, column);
+                        board.update(row, column + 1);
+                    }
+                    if (TYPE == 4) {
+                        board.update(row + 1, column);
+                        board.update(row, column - 1);
+                        board.update(row, column + 1);
+                    }
+                    if (TYPE == 5) {
+                        board.update(row, column - 1);
+                        board.update(row - 1, column);
+                        board.update(row + 1, column);
+                    }
+                    if (TYPE == 6) {
+                        board.update(row - 1, column);
+                        board.update(row, column - 1);
+                        board.update(row, column + 1);
+                    }
+                    if (TYPE == 7) {
+                        board.update(row, column + 1);
+                        board.update(row - 1, column);
+                        board.update(row + 1, column);
+                    }
+                    if (TYPE == 8) {
+                        board.update(row, column - 1);
+                        board.update(row, column + 1);
+                        board.update(row - 1, column);
+                        board.update(row + 1, column);
+                    }
+                }
+            });
+            /*
+                0 4 1
+                7 8 5
+                3 6 2
+             */
+
         }
     }
 

@@ -75,16 +75,43 @@ public class SplitTimeline{
         }
 
         if (numberOfMolecules == 3) {
-            KeyFrame aStart = new KeyFrame(Duration.ZERO, new KeyValue(one.translateXProperty(), 0));
-            KeyFrame aEnd = new KeyFrame(Duration.seconds(0.5), new KeyValue(one.translateXProperty(), -width));
+            /*
+                0 4 1
+                7 8 5
+                3 6 2
+             */
+            if (type == 4 || type == 6) {
+                KeyFrame aStart = new KeyFrame(Duration.ZERO, new KeyValue(one.translateXProperty(), 0));
+                KeyFrame aEnd = new KeyFrame(Duration.seconds(0.5), new KeyValue(one.translateXProperty(), -width));
 
-            KeyFrame bStart = new KeyFrame(Duration.ZERO, new KeyValue(two.translateYProperty(), 0));
-            KeyFrame bEnd = new KeyFrame(Duration.seconds(0.5), new KeyValue(two.translateYProperty(), -width));
+                KeyValue bEndKV = new KeyValue(two.translateYProperty(), 0);
+                if (type == 4) bEndKV = new KeyValue(two.translateYProperty(), height);
+                if (type == 6) bEndKV = new KeyValue(two.translateYProperty(), -height);
+                KeyFrame bStart = new KeyFrame(Duration.ZERO, new KeyValue(two.translateYProperty(), 0));
+                KeyFrame bEnd = new KeyFrame(Duration.seconds(0.5), bEndKV);
 
-            KeyFrame cStart = new KeyFrame(Duration.ZERO, new KeyValue(three.translateXProperty(), 0));
-            KeyFrame cEnd = new KeyFrame(Duration.seconds(0.5), new KeyValue(three.translateXProperty(), width));
+                KeyFrame cStart = new KeyFrame(Duration.ZERO, new KeyValue(three.translateXProperty(), 0));
+                KeyFrame cEnd = new KeyFrame(Duration.seconds(0.5), new KeyValue(three.translateXProperty(), width));
 
-            t.getKeyFrames().addAll(aStart, aEnd, bStart, bEnd, cStart, cEnd);
+                t.getKeyFrames().addAll(aStart, aEnd, bStart, bEnd, cStart, cEnd);
+            }
+
+            if (type == 5 || type == 7) {
+                KeyFrame aStart = new KeyFrame(Duration.ZERO, new KeyValue(one.translateYProperty(), 0));
+                KeyFrame aEnd = new KeyFrame(Duration.seconds(0.5), new KeyValue(one.translateYProperty(), -height));
+
+                KeyValue bEndKV = new KeyValue(two.translateXProperty(), 0);
+                if (type == 5) bEndKV = new KeyValue(two.translateXProperty(), -width);
+                if (type == 7) bEndKV = new KeyValue(two.translateXProperty(), width);
+                KeyFrame bStart = new KeyFrame(Duration.ZERO, new KeyValue(two.translateXProperty(), 0));
+                KeyFrame bEnd = new KeyFrame(Duration.seconds(0.5), bEndKV);
+
+                KeyFrame cStart = new KeyFrame(Duration.ZERO, new KeyValue(three.translateYProperty(), 0));
+                KeyFrame cEnd = new KeyFrame(Duration.seconds(0.5), new KeyValue(three.translateYProperty(), height));
+
+                t.getKeyFrames().addAll(aStart, aEnd, bStart, bEnd, cStart, cEnd);
+            }
+
         }
 
         if (numberOfMolecules == 4) {
@@ -92,13 +119,13 @@ public class SplitTimeline{
             KeyFrame aEnd = new KeyFrame(Duration.seconds(0.5), new KeyValue(one.translateXProperty(), -width));
 
             KeyFrame bStart = new KeyFrame(Duration.ZERO, new KeyValue(two.translateYProperty(), 0));
-            KeyFrame bEnd = new KeyFrame(Duration.seconds(0.5), new KeyValue(two.translateYProperty(), -width));
+            KeyFrame bEnd = new KeyFrame(Duration.seconds(0.5), new KeyValue(two.translateYProperty(), -height));
 
             KeyFrame cStart = new KeyFrame(Duration.ZERO, new KeyValue(three.translateXProperty(), 0));
             KeyFrame cEnd = new KeyFrame(Duration.seconds(0.5), new KeyValue(three.translateXProperty(), width));
 
             KeyFrame dStart = new KeyFrame(Duration.ZERO, new KeyValue(four.translateYProperty(), 0));
-            KeyFrame dEnd = new KeyFrame(Duration.seconds(0.5), new KeyValue(four.translateYProperty(), width));
+            KeyFrame dEnd = new KeyFrame(Duration.seconds(0.5), new KeyValue(four.translateYProperty(), height));
 
             t.getKeyFrames().addAll(aStart, aEnd, bStart, bEnd, cStart, cEnd, dStart, dEnd);
         }
