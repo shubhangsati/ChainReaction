@@ -9,18 +9,25 @@ import javafx.scene.transform.Rotate;
 import javafx.util.Duration;
 
 public class Molecule extends Group{
-    private int atoms, TYPE, radius;
-    private double width;
+    private int atoms, TYPE, radius, criticalMass;
+    private double width, height;
     private PhongMaterial color;
     private Rotate rot1, rot2;
     private Timeline two, three;
 
-    public Molecule(int t, int r, PhongMaterial C, double w) {
+    public Molecule(int t, int r, PhongMaterial C, double w, double h) {
         atoms = 0;
         TYPE = t;
         radius = r;
         color = C;
         width = w;
+        height = h;
+        if (TYPE < 4)
+            criticalMass = 1;
+        else if (TYPE >= 4 && TYPE < 8)
+            criticalMass = 2;
+        else
+            criticalMass = 3;
 
         rot1 = new Rotate();
         rot2 = new Rotate();
@@ -51,13 +58,13 @@ public class Molecule extends Group{
     }
 
     public void addAtom() {
-        if (atoms == 0) {
+        if (atoms == 0 && atoms < criticalMass) {
             Sphere c = new Sphere(radius);
             c.setMaterial(color);
             getChildren().add(c);
             atoms++;
         }
-        else if (atoms == 1) {
+        else if (atoms == 1 && atoms < criticalMass) {
             Sphere c = new Sphere(radius);
             c.setMaterial(color);
             c.setTranslateX(getLayoutX() + radius);
@@ -68,7 +75,7 @@ public class Molecule extends Group{
             two.play();
         }
 
-        else if (atoms == 2) {
+        else if (atoms == 2 && atoms < criticalMass) {
             Sphere c = new Sphere(radius);
             c.setMaterial(color);
             c.setTranslateX(getLayoutX() + radius / 2);
@@ -79,19 +86,16 @@ public class Molecule extends Group{
             two.stop();
             three.play();
         }
-
-        else if (atoms == 3) {
+        else if (atoms == criticalMass) {
             Sphere c = new Sphere(radius);
             c.setMaterial(color);
             c.setTranslateX(getLayoutX() + radius / 2);
             c.setTranslateY(getLayoutY() + radius / 2);
             getChildren().add(c);
-            atoms++;
             getTransforms().removeAll(rot1, rot2);
-            //molecule.getTransforms().addAll(rot1, rot2);
+            Timeline splitAnimation = new SplitTimeline(this).getSplitAnimation(width, height);
             two.stop();
             three.stop();
-            Timeline splitAnimation = new SplitTimeline(this).getSplitAnimation(width);
             splitAnimation.play();
         }
     }
@@ -110,5 +114,9 @@ public class Molecule extends Group{
 
     public void setTYPE(int TYPE) {
         this.TYPE = TYPE;
+    }
+
+    public int getCriticalMass() {
+        return criticalMass;
     }
 }

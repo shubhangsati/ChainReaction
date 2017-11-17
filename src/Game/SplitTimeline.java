@@ -1,5 +1,6 @@
 package Game;
 
+import application.Molecule;
 import javafx.animation.*;
 import javafx.scene.Group;
 import javafx.scene.shape.Sphere;
@@ -11,10 +12,11 @@ public class SplitTimeline{
     private Sphere three;
     private Sphere four;
     private int numberOfMolecules;
+    private int type;
     private Timeline splitAnimation;
-    public SplitTimeline(Group molecule) {
+    public SplitTimeline(Molecule molecule) {
+        type = molecule.getTYPE();
 
-        System.out.println(molecule.getTransforms().size());
         numberOfMolecules = molecule.getChildren().size();
         if (numberOfMolecules == 2) {
             one = (Sphere) molecule.getChildren().get(0);
@@ -44,14 +46,30 @@ public class SplitTimeline{
         }
     }
 
-    public Timeline getSplitAnimation(double width) {
+    public Timeline getSplitAnimation(double width, double height) {
         Timeline t = new Timeline();
         if (numberOfMolecules == 2) {
+            /*
+                0 4 1
+                7 8 5
+                3 6 2
+             */
+            KeyValue aEndKV = new KeyValue(one.translateXProperty(), 0);
+            KeyValue bEndKV = new KeyValue(one.translateYProperty(), 0);
+            if (type == 0 || type == 3)
+                aEndKV = new KeyValue(one.translateXProperty(), width);
+            if (type == 1 || type == 2)
+                aEndKV = new KeyValue(one.translateXProperty(), -width);
+            if (type == 0 || type == 1)
+                bEndKV = new KeyValue(two.translateYProperty(), height);
+            if (type == 3 || type == 2)
+                bEndKV = new KeyValue(two.translateYProperty(), -height);
+
             KeyFrame aStart = new KeyFrame(Duration.ZERO, new KeyValue(one.translateXProperty(), 0));
-            KeyFrame aEnd = new KeyFrame(Duration.seconds(0.5), new KeyValue(one.translateXProperty(), -width));
+            KeyFrame aEnd = new KeyFrame(Duration.seconds(0.5), aEndKV);
 
             KeyFrame bStart = new KeyFrame(Duration.ZERO, new KeyValue(two.translateYProperty(), 0));
-            KeyFrame bEnd = new KeyFrame(Duration.seconds(0.5), new KeyValue(two.translateYProperty(), -width));
+            KeyFrame bEnd = new KeyFrame(Duration.seconds(0.5), bEndKV);
 
             t.getKeyFrames().addAll(aStart, aEnd, bStart, bEnd);
         }
