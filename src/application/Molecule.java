@@ -4,6 +4,7 @@ import Game.SplitTimeline;
 import javafx.animation.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.paint.Color;
 import javafx.scene.paint.PhongMaterial;
 import javafx.scene.shape.Sphere;
 import javafx.scene.*;
@@ -15,6 +16,7 @@ public class Molecule extends Group{
     private Board board;
     private double width, height;
     private PhongMaterial color;
+    public PhongMaterial defaultColor;
     private Rotate rot1, rot2;
     private Timeline two, three;
 
@@ -28,6 +30,9 @@ public class Molecule extends Group{
         row = i;
         column = j;
         board = gameBoard;
+        defaultColor = new PhongMaterial();
+        defaultColor.setDiffuseColor(Color.BLACK);
+        defaultColor.setSpecularColor(Color.BLACK);
 
         if (TYPE < 4)
             criticalMass = 1;
@@ -111,46 +116,55 @@ public class Molecule extends Group{
                     getChildren().removeAll(getChildren());
                     atoms = 0;
                     if (TYPE == 0) {
-                        board.update(row + 1, column);
-                        board.update(row, column + 1);
+                        board.update(row + 1, column, row, column);
+                        board.update(row, column + 1, row, column);
+                        setColor(defaultColor);
                     }
                     if (TYPE == 1) {
-                        board.update(row + 1, column);
-                        board.update(row, column - 1);
+                        board.update(row + 1, column, row, column);
+                        board.update(row, column - 1, row, column);
+                        setColor(defaultColor);
                     }
                     if (TYPE == 2) {
-                        board.update(row - 1, column);
-                        board.update(row, column - 1);
+                        board.update(row - 1, column, row, column);
+                        board.update(row, column - 1, row, column);
+                        setColor(defaultColor);
                     }
                     if (TYPE == 3) {
-                        board.update(row - 1, column);
-                        board.update(row, column + 1);
+                        board.update(row - 1, column, row, column);
+                        board.update(row, column + 1, row, column);
+                        setColor(defaultColor);
                     }
                     if (TYPE == 4) {
-                        board.update(row + 1, column);
-                        board.update(row, column - 1);
-                        board.update(row, column + 1);
+                        board.update(row + 1, column, row, column);
+                        board.update(row, column - 1, row, column);
+                        board.update(row, column + 1, row, column);
+                        setColor(defaultColor);
                     }
                     if (TYPE == 5) {
-                        board.update(row, column - 1);
-                        board.update(row - 1, column);
-                        board.update(row + 1, column);
+                        board.update(row, column - 1, row, column);
+                        board.update(row - 1, column, row, column);
+                        board.update(row + 1, column, row, column);
+                        setColor(defaultColor);
                     }
                     if (TYPE == 6) {
-                        board.update(row - 1, column);
-                        board.update(row, column - 1);
-                        board.update(row, column + 1);
+                        board.update(row - 1, column, row, column);
+                        board.update(row, column - 1, row, column);
+                        board.update(row, column + 1, row, column);
+                        setColor(defaultColor);
                     }
                     if (TYPE == 7) {
-                        board.update(row, column + 1);
-                        board.update(row - 1, column);
-                        board.update(row + 1, column);
+                        board.update(row, column + 1, row, column);
+                        board.update(row - 1, column, row, column);
+                        board.update(row + 1, column, row, column);
+                        setColor(defaultColor);
                     }
                     if (TYPE == 8) {
-                        board.update(row, column - 1);
-                        board.update(row, column + 1);
-                        board.update(row - 1, column);
-                        board.update(row + 1, column);
+                        board.update(row, column - 1, row, column);
+                        board.update(row, column + 1, row, column);
+                        board.update(row - 1, column, row, column);
+                        board.update(row + 1, column, row, column);
+                        setColor(defaultColor);
                     }
                 }
             });
@@ -173,6 +187,14 @@ public class Molecule extends Group{
 
     public int getTYPE() {
         return TYPE;
+    }
+
+    public void setColor (PhongMaterial c) {
+        color = c;
+    }
+
+    public PhongMaterial getColor() {
+        return color;
     }
 
     public void setTYPE(int TYPE) {
