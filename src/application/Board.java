@@ -3,6 +3,7 @@ package application;
 import javafx.scene.Group;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.PhongMaterial;
+import javafx.scene.shape.Sphere;
 
 public class Board extends Group {
     private Molecule[][] board;
@@ -14,9 +15,9 @@ public class Board extends Group {
         height = h;
         topx = tx;
         topy = ty;
-        PhongMaterial redMaterial = new PhongMaterial();
-        redMaterial.setDiffuseColor(Color.RED);
-        redMaterial.setSpecularColor(Color.ORANGE);
+        PhongMaterial black = new PhongMaterial();
+        black.setDiffuseColor(Color.BLACK);
+        black.setSpecularColor(Color.BLACK);
         board = new Molecule[n][m];
         for (int i = 0; i < n; ++i) {
             for (int j = 0; j < m; ++j) {
@@ -35,7 +36,7 @@ public class Board extends Group {
                 if (i == n - 1 && j == m - 1) type = 2;
                 if (i != 0 && i != n - 1 && j == m - 1 ) type = 5;
                 if (i != 0 && i != n - 1 && j != 0 && j != m - 1) type = 8;
-                board[i][j] = new Molecule(type, 10, redMaterial, width, height, i, j, this);
+                board[i][j] = new Molecule(type, 10, black, width, height, i, j, this);
                 board[i][j].setTranslateX(topx + width * j + width / 2);
                 board[i][j].setTranslateY(topy + height * i + height / 2);
                 getChildren().add(board[i][j]);
@@ -43,7 +44,12 @@ public class Board extends Group {
         }
     }
 
-    public void update(int x, int y) {
+    public void update(int x, int y, int parentx, int parenty) {
+        board[x][y].setColor(board[parentx][parenty].getColor());
+        board[x][y].getChildren().forEach(item -> {
+            Sphere temp = (Sphere) item;
+            temp.setMaterial(board[parentx][parenty].getColor());
+        });
         board[x][y].addAtom();
     }
 

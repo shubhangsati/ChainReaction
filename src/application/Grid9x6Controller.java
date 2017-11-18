@@ -16,6 +16,7 @@ public class Grid9x6Controller implements ControlledScreen {
 	public void setScreenParent(ScreensController screenpage) {
 		control = screenpage;
 	}
+
     @FXML
     private ResourceBundle resources;
 
