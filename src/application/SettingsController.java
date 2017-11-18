@@ -1,5 +1,12 @@
 package application;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -49,6 +56,9 @@ public class SettingsController implements Initializable,ControlledScreen {
 
     @FXML
     private Slider bValue;
+    Double r = rValue.getValue();
+	Double g = gValue.getValue();
+	Double b = bValue.getValue();
 
     @FXML
     void initializeSliders(MouseEvent event) {
@@ -57,6 +67,70 @@ public class SettingsController implements Initializable,ControlledScreen {
     	Double b = bValue.getValue();
     	Color show = Color.rgb(r.intValue(), g.intValue(), b.intValue());
     	colorShower.setBackground(new Background(new BackgroundFill(show, CornerRadii.EMPTY, Insets.EMPTY)));
+    }
+    
+    @FXML
+    void setDefaults(ActionEvent event) {
+    	try {
+            FileReader reader = new FileReader("src/application/default.txt");
+            BufferedReader bufferedReader = new BufferedReader(reader);
+ 
+            String line;
+ 
+            while ((line = bufferedReader.readLine()) != null) {
+                System.out.println(line);
+            }
+            reader.close();
+ 
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    @FXML
+    void setSettings() {
+    	try {
+    		FileReader reader = new FileReader("src/application/config.txt");
+            BufferedReader bufferedReader = new BufferedReader(reader);
+            String line;
+            PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter("src/application/config.temp")));
+ 
+//            bufferedWriter.write("Hello World");
+//            bufferedWriter.newLine();
+//            bufferedWriter.write("See You Again!");
+//            
+            int a=1;
+            while ((line = bufferedReader.readLine()) != null) {
+                if (a==choiceBox.getValue()) {
+                	line = r.intValue()+" "+g.intValue()+" "+b.intValue()+"\n";
+                }
+                // Always write the line, whether you changed it or not.
+                writer.println(line);
+                a+=1;
+            }
+ 
+            File realName = new File("src/application/config.txt");
+            realName.delete(); // remove the old file
+            new File("src/application/config.temp").renameTo(realName);
+            writer.close();
+            try {
+                FileReader reader1 = new FileReader("src/application/default.txt");
+                BufferedReader bufferedReader1 = new BufferedReader(reader1);
+     
+                String line1;
+     
+                while ((line1 = =bufferedReader1.readLine()) != null) {
+                    System.out.println(line);
+                }
+                reader.close();
+     
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 //    
 //    @FXML

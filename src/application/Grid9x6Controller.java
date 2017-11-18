@@ -3,6 +3,7 @@ package application;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.input.MouseEvent;
@@ -29,6 +30,17 @@ public class Grid9x6Controller implements ControlledScreen {
 
     @FXML
     public GridPane topGrid;
+    
+    @FXML
+    void goToChoice(ActionEvent event) {
+    	control.setScreen(MasterApp.sc2ID);
+    }
+
+    @FXML
+    void undo(ActionEvent event) {
+
+    }
+
 
     @FXML
     void initialize() {

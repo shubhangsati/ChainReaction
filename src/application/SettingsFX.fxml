@@ -26,7 +26,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button id="button" fx:id="setDefault" defaultButton="true" layoutX="80.0" layoutY="459.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="151.0" stylesheets="@buttonstyle.css" text="Set Defaults" textFill="WHITE">
+            <Button id="button" fx:id="setDefault" defaultButton="true" layoutX="80.0" layoutY="459.0" mnemonicParsing="false" onAction="#setDefaults" prefHeight="42.0" prefWidth="151.0" stylesheets="@buttonstyle.css" text="Set Defaults" textFill="WHITE">
                <font>
                   <Font name="Calibri Bold" size="22.0" />
                </font>

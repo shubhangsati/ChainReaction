@@ -3,11 +3,14 @@ package application;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.AnchorPane;
 
@@ -42,10 +45,25 @@ public class ChoiceController implements ControlledScreen {
     @FXML
     private Button startButton;
 
+    private boolean radioButtonValue() {
+    	if(button9x6.isSelected()) 
+    		return false;
+    	else
+    		return true;
+    }
+    
     @FXML
     void goToGrid(ActionEvent event) {
-    	
+    	if(!radioButtonValue()) control.setScreen(MasterApp.sc3ID);
+    	else control.setScreen(MasterApp.sc4ID);
+
     }
+    
+    @FXML
+    void goToMenu(ActionEvent event) {
+    	control.setScreen(MasterApp.sc1ID);
+    }
+
 
     @FXML
     void initialize() {
@@ -54,6 +72,7 @@ public class ChoiceController implements ControlledScreen {
 //        assert gridSize != null : "fx:id=\"gridSize\" was not injected: check your FXML file 'Selection.fxml'.";
 //        assert newGame != null : "fx:id=\"newGame\" was not injected: check your FXML file 'Selection.fxml'.";
         choiceBox.setValue(2);
+//        this.radioButtonValue();
         choiceBox.getItems().addAll(2,3,4,5,6,7,8);
     }
 }

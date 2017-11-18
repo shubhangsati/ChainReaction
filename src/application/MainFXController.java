@@ -45,7 +45,7 @@ public class MainFXController implements ControlledScreen {
         control.setScreen(MasterApp.sc5ID);
     }
     
-    	
+    
     
     @FXML
     void initialize() {
